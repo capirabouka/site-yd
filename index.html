@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Assistant titre de séjour - Association</title>
+    <meta
+      name="description"
+      content="Parcours de questions anonyme pour aider à identifier vos droits au séjour (titre de séjour de plein droit, AES, etc.)."
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div class="brand" id="btn-home-logo">
+          <div class="brand-mark">YD</div>
+          <div>
+            <h1>Assistant titre de séjour</h1>
+            <p>
+              YD – You Don’t Have To est une association qui accompagne les
+              personnes étrangères dans leurs démarches de séjour.
+            </p>
+          </div>
+        </div>
+        <nav class="top-nav">
+          <button id="btn-accueil" class="nav-link">Questionnaire</button>
+          <button id="btn-mentions" class="nav-link">Mentions légales</button>
+          <button id="btn-contact" class="nav-link">Contact</button>
+          <div class="lang-switch">
+            <button class="lang active" aria-label="Français">FR</button>
+            <button class="lang" aria-label="Anglais" disabled>EN</button>
+          </div>
+        </nav>
+      </header>
+
+      <main class="main-centered">
+        <!-- Accueil -->
+        <section id="section-accueil">
+          <div class="hero">
+            <div class="hero-headline">
+              <h2 class="hero-bienvenue">Bienvenue</h2>
+              <p class="hero-asso">sur le site de l’association<br />You Don’t Need To Pay For That (YD)</p>
+            </div>
+            <div class="hero-image-wrap">
+              <img
+                src="./MAISONS%20YD.jpg"
+                alt="YD – You Don't Have To"
+                class="hero-image"
+              />
+            </div>
+          </div>
+          <div class="accueil-suite">
+            <div class="hero-content">
+            <div class="hero-text">
+              <h2>YD – You Don’t Have To</h2>
+              <p class="hero-lead">
+                Association d’accompagnement des personnes étrangères dans leurs
+                démarches de séjour. Gratuit, bienveillant, sans jugement.
+              </p>
+              <p class="hero-sub">
+                Ce site vous propose un <strong>assistant simple et anonyme</strong>
+                pour préparer un rendez-vous : en quelques questions, vous voyez
+                si vous relevez plutôt d’un
+                <strong>titre de séjour de plein droit</strong> ou d’une
+                <strong>admission exceptionnelle au séjour (AES)</strong>.
+              </p>
+              <button id="btn-demarrer" class="primary hero-cta">
+                Commencer le questionnaire
+              </button>
+            </div>
+            <div class="hero-side">
+              <h3>Comment ça marche&nbsp;?</h3>
+              <ol>
+                <li>Vous répondez aux questions (aucune donnée n’est enregistrée).</li>
+                <li>Vous voyez une synthèse indicative de votre situation.</li>
+                <li>
+                  Si besoin, vous contactez l’association avec un récap de vos
+                  réponses.
+                </li>
+              </ol>
+            </div>
+          </div>
+          </div>
+        </section>
+
+        <!-- Étape 1 : Identité -->
+        <section id="section-step1" class="card hidden">
+          <h2>Étape 1 / 4 – Identité</h2>
+          <div class="grid-2">
+            <div class="field">
+              <label>Nom</label>
+              <input type="text" id="nom" autocomplete="off" />
+            </div>
+            <div class="field">
+              <label>Prénom</label>
+              <input type="text" id="prenom" autocomplete="off" />
+            </div>
+          </div>
+          <div class="grid-3">
+            <div class="field">
+              <label>Âge <span class="required">*</span></label>
+              <input type="number" id="age" min="0" max="120" />
+            </div>
+            <div class="field">
+              <span class="label">Êtes-vous ressortissant algérien&nbsp;?</span>
+              <div class="radios">
+                <label>
+                  <input type="radio" name="alg" value="oui" /> Oui
+                </label>
+                <label>
+                  <input type="radio" name="alg" value="non" /> Non
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Avez-vous déjà eu un titre de séjour&nbsp;?</span>
+              <div class="radios">
+                <label>
+                  <input type="radio" name="ts" value="oui" /> Oui
+                </label>
+                <label>
+                  <input type="radio" name="ts" value="non" /> Non
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="nav">
+            <span class="note">Les réponses ne sont pas enregistrées.</span>
+            <button id="to-step2" class="primary">Continuer</button>
+          </div>
+        </section>
+
+        <!-- Étape 2 : TS de plein droit -->
+        <section id="section-step2" class="card hidden">
+          <h2>Étape 2 / 4 – TS de plein droit</h2>
+          <p class="help">
+            Cliquez sur les situations qui correspondent à votre cas et répondez
+            aux questions.
+          </p>
+          <div class="grid-2">
+            <div class="subcard">
+              <h3>A. Parent d’enfants français</h3>
+              <div class="field">
+                <span class="label"
+                  >Avez-vous un ou des enfants mineurs de nationalité
+                  française&nbsp;?</span
+                >
+                <div class="radios">
+                  <label>
+                    <input
+                      type="radio"
+                      name="enfantFr"
+                      value="oui"
+                    />Oui
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="enfantFr"
+                      value="non"
+                    />Non
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="subcard">
+              <h3>C. Conjoint de Français</h3>
+              <div class="field">
+                <span class="label"
+                  >Êtes-vous marié avec un ressortissant français&nbsp;?</span
+                >
+                <div class="radios">
+                  <label>
+                    <input type="radio" name="conjMarie" value="oui" />Oui
+                  </label>
+                  <label>
+                    <input type="radio" name="conjMarie" value="non" />Non
+                  </label>
+                </div>
+              </div>
+              <div id="bloc-conjoint-details" class="nested hidden">
+                <div class="field">
+                  <span class="label">Marié depuis plus de 6 mois&nbsp;?</span>
+                  <div class="radios">
+                    <label>
+                      <input
+                        type="radio"
+                        name="mariage6"
+                        value="oui"
+                      />Oui
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        name="mariage6"
+                        value="non"
+                      />Non
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label">Vivez-vous avec votre conjoint&nbsp;?</span>
+                  <div class="radios">
+                    <label>
+                      <input type="radio" name="vieCommune" value="oui" />Oui
+                    </label>
+                    <label>
+                      <input type="radio" name="vieCommune" value="non" />Non
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label"
+                    >Entré(e) en France avec un visa long séjour conjoint(e)
+                    de Français&nbsp;?</span
+                  >
+                  <div class="radios">
+                    <label>
+                      <input type="radio" name="visa" value="oui" />Oui
+                    </label>
+                    <label>
+                      <input type="radio" name="visa" value="non" />Non
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label"
+                    >Si mariage à l’étranger, est-il transcrit en France&nbsp;?</span
+                  >
+                  <div class="radios">
+                    <label>
+                      <input
+                        type="radio"
+                        name="transcrit"
+                        value="oui"
+                      />Oui
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        name="transcrit"
+                        value="non"
+                      />Non
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="subcard">
+              <h3>D. PACS avec un Français</h3>
+              <div class="field">
+                <span class="label"
+                  >Êtes-vous pacsé(e) avec un ressortissant français&nbsp;?</span
+                >
+                <div class="radios">
+                  <label>
+                    <input type="radio" name="pacs" value="oui" />Oui
+                  </label>
+                  <label>
+                    <input type="radio" name="pacs" value="non" />Non
+                  </label>
+                </div>
+              </div>
+              <div id="bloc-pacs-details" class="nested hidden">
+                <div class="field">
+                  <span class="label">Pacsé(e) depuis plus d’un an&nbsp;?</span>
+                  <div class="radios">
+                    <label>
+                      <input type="radio" name="pacs1an" value="oui" />Oui
+                    </label>
+                    <label>
+                      <input type="radio" name="pacs1an" value="non" />Non
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label"
+                    >Pouvez-vous justifier d’une année de vie commune&nbsp;?</span
+                  >
+                  <div class="radios">
+                    <label>
+                      <input type="radio" name="vie1an" value="oui" />Oui
+                    </label>
+                    <label>
+                      <input type="radio" name="vie1an" value="non" />Non
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="subcard">
+              <h3>E. Parent d’enfant réfugié</h3>
+              <div class="field">
+                <span class="label"
+                  >Avez-vous un enfant ayant le statut de réfugié&nbsp;?</span
+                >
+                <div class="radios">
+                  <label>
+                    <input
+                      type="radio"
+                      name="enfantRef"
+                      value="oui"
+                    />Oui
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="enfantRef"
+                      value="non"
+                    />Non
+                  </label>
+                </div>
+              </div>
+              <div id="bloc-ref-details" class="nested hidden">
+                <div class="field">
+                  <span class="label">Votre enfant est-il mineur&nbsp;?</span>
+                  <div class="radios">
+                    <label>
+                      <input type="radio" name="refMineur" value="oui" />Oui
+                    </label>
+                    <label>
+                      <input type="radio" name="refMineur" value="non" />Non
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label"
+                    >Contribuez-vous à l’entretien et l’éducation de votre
+                    enfant&nbsp;?</span
+                  >
+                  <div class="radios">
+                    <label>
+                      <input
+                        type="radio"
+                        name="refEntretien"
+                        value="oui"
+                      />Oui
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        name="refEntretien"
+                        value="non"
+                      />Non
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label">Résidez-vous en France&nbsp;?</span>
+                  <div class="radios">
+                    <label>
+                      <input
+                        type="radio"
+                        name="refFrance"
+                        value="oui"
+                      />Oui
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        name="refFrance"
+                        value="non"
+                      />Non
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="subcard">
+              <h3>F. MNA pris en charge par l’ASE &lt; 16 ans</h3>
+              <div class="field">
+                <span class="label"
+                  >Avez-vous été pris en charge par l’ASE avant vos 16
+                  ans&nbsp;?</span
+                >
+                <div class="radios">
+                  <label>
+                    <input type="radio" name="ase16" value="oui" />Oui
+                  </label>
+                  <label>
+                    <input type="radio" name="ase16" value="non" />Non
+                  </label>
+                </div>
+              </div>
+              <div id="bloc-mna-details" class="nested hidden">
+                <div class="field">
+                  <span class="label">Avez-vous entre 16 et 19 ans&nbsp;?</span>
+                  <div class="radios">
+                    <label>
+                      <input type="radio" name="age16_19" value="oui" />Oui
+                    </label>
+                    <label>
+                      <input type="radio" name="age16_19" value="non" />Non
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label">Avez-vous une formation&nbsp;?</span>
+                  <div class="radios">
+                    <label>
+                      <input type="radio" name="formation" value="oui" />Oui
+                    </label>
+                    <label>
+                      <input type="radio" name="formation" value="non" />Non
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label"
+                    >Avez-vous des liens avec votre famille dans le pays
+                    d’origine&nbsp;?</span
+                  >
+                  <div class="radios">
+                    <label>
+                      <input type="radio" name="liensFam" value="oui" />Oui
+                    </label>
+                    <label>
+                      <input type="radio" name="liensFam" value="non" />Non
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="subcard">
+              <h3>G. Étranger né en France</h3>
+              <div class="field">
+                <span class="label">Êtes-vous né(e) en France&nbsp;?</span>
+                <div class="radios">
+                  <label>
+                    <input type="radio" name="neFr" value="oui" />Oui
+                  </label>
+                  <label>
+                    <input type="radio" name="neFr" value="non" />Non
+                  </label>
+                </div>
+              </div>
+              <div id="bloc-ne-details" class="nested hidden">
+                <div class="field">
+                  <span class="label">Avez-vous entre 16 et 21 ans&nbsp;?</span>
+                  <div class="radios">
+                    <label>
+                      <input type="radio" name="age16_21" value="oui" />Oui
+                    </label>
+                    <label>
+                      <input type="radio" name="age16_21" value="non" />Non
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label"
+                    >Avez-vous résidé habituellement en France pendant au moins 8
+                    ans après vos 10 ans&nbsp;?</span
+                  >
+                  <div class="radios">
+                    <label>
+                      <input type="radio" name="res8" value="oui" />Oui
+                    </label>
+                    <label>
+                      <input type="radio" name="res8" value="non" />Non
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label"
+                    >Avez-vous été scolarisé(e) en France pendant au moins 5
+                    ans&nbsp;?</span
+                  >
+                  <div class="radios">
+                    <label>
+                      <input type="radio" name="sco5" value="oui" />Oui
+                    </label>
+                    <label>
+                      <input type="radio" name="sco5" value="non" />Non
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="subcard">
+              <h3>B. Aucune de ces situations</h3>
+              <label class="checkbox">
+                <input type="checkbox" id="aucune" />
+                <span>Vous ne correspondez à aucune de ces situations.</span>
+              </label>
+            </div>
+          </div>
+          <div class="nav">
+            <button class="secondary" data-back="1">Précédent</button>
+            <button id="to-step3" class="primary">Continuer</button>
+          </div>
+        </section>
+
+        <!-- Étape 3 : AES -->
+        <section id="section-step3" class="card hidden">
+          <h2>Étape 3 / 4 – Questionnaire AES</h2>
+          <p class="help">
+            Ces questions permettent d’identifier une possible admission
+            exceptionnelle au séjour (AES).
+          </p>
+          <div class="aes-blocks">
+            <div class="field">
+              <span class="label"
+                >Votre enfant réside-t-il habituellement en France&nbsp;?
+                <span
+                  class="info"
+                  title="Résider habituellement = vivre de façon stable et principale en France, pas un simple séjour temporaire."
+                  >i</span
+                ></span
+              >
+              <div class="radios">
+                <label>
+                  <input type="radio" name="aesEnfantRes" value="oui" />Oui
+                </label>
+                <label>
+                  <input type="radio" name="aesEnfantRes" value="non" />Non
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label"
+                >Assurez-vous la prise en charge de vos enfants depuis leur
+                naissance&nbsp;?
+                <span
+                  class="info"
+                  title="Entretien matériel, présence, participation à l’éducation."
+                  >i</span
+                ></span
+              >
+              <div class="radios">
+                <label>
+                  <input
+                    type="radio"
+                    name="aesPriseNaissance"
+                    value="oui"
+                  />Oui
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="aesPriseNaissance"
+                    value="non"
+                  />Non
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label"
+                >Résidez-vous en France depuis au moins 2 ans&nbsp;?
+                <span
+                  class="info"
+                  title="Séjour continu, ou avec de très courtes interruptions, avec centre de vie en France."
+                  >i</span
+                ></span
+              >
+              <div class="radios">
+                <label>
+                  <input
+                    type="radio"
+                    name="aes2ans"
+                    value="oui"
+                  />Oui
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="aes2ans"
+                    value="non"
+                  />Non
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="field">
+              <span class="label"
+                >Êtes-vous étranger malade (suivi médical indispensable en
+                France)&nbsp;?</span
+              >
+              <div class="radios">
+                <label>
+                  <input
+                    type="radio"
+                    name="aesMalade"
+                    value="oui"
+                  />Oui
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="aesMalade"
+                    value="non"
+                  />Non
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label"
+                >Travaillez-vous ou avez-vous un projet sérieux d’emploi en
+                France&nbsp;?</span
+              >
+              <div class="radios">
+                <label>
+                  <input
+                    type="radio"
+                    name="aesTravail"
+                    value="oui"
+                  />Oui
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="aesTravail"
+                    value="non"
+                  />Non
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label"
+                >Avez-vous au moins 7 ans de vie en France&nbsp;?</span
+              >
+              <div class="radios">
+                <label>
+                  <input
+                    type="radio"
+                    name="aes7ans"
+                    value="oui"
+                  />Oui
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="aes7ans"
+                    value="non"
+                  />Non
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label"
+                >Êtes-vous actuellement étudiant(e) en France&nbsp;?</span
+              >
+              <div class="radios">
+                <label>
+                  <input
+                    type="radio"
+                    name="aesEtud"
+                    value="oui"
+                  />Oui
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="aesEtud"
+                    value="non"
+                  />Non
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="nav">
+            <button class="secondary" data-back="2">Précédent</button>
+            <button id="to-step4" class="primary">Voir les résultats</button>
+          </div>
+        </section>
+
+        <!-- Étape 4 : Résultats -->
+        <section id="section-step4" class="card hidden">
+          <h2>Étape 4 / 4 – Résultats & ressources</h2>
+          <div id="resultat" class="result"></div>
+
+          <div class="field">
+            <label>Précisez votre préfecture</label>
+            <select id="prefecture">
+              <option value="">Sélectionnez une préfecture</option>
+              <option value="paris">Paris</option>
+              <option value="93">Seine-Saint-Denis</option>
+              <option value="92">Hauts-de-Seine</option>
+              <option value="autre">Autre préfecture</option>
+            </select>
+          </div>
+
+          <div id="pref-details" class="pref-details hidden"></div>
+
+          <div id="contact-panel" class="contact-panel hidden">
+            <h3>Prendre contact avec l’association</h3>
+            <p>
+              1. Présentez-vous en quelques lignes (qui vous êtes, votre
+              situation) :
+            </p>
+            <textarea
+              id="contact-message"
+              rows="4"
+              placeholder="Exemple : Je m'appelle..., je vis en France depuis..., je souhaite vous demander de l'aide pour..."
+            ></textarea>
+            <p>
+              2. Voici un résumé de vos réponses que vous pouvez
+              copier-coller dans votre mail :
+            </p>
+            <textarea
+              id="contact-summary"
+              rows="10"
+              readonly
+            ></textarea>
+            <p class="note">
+              Envoyez ensuite ces éléments à l’adresse suivante (ou via votre
+              boîte mail habituelle) :
+              <span class="mail">contact@association-exemple.fr</span>
+            </p>
+          </div>
+
+          <div class="nav">
+            <button class="secondary" data-back="3">Précédent</button>
+            <button id="btn-contact-send" class="primary">
+              Prendre contact avec l’association
+            </button>
+            <button id="btn-reset" class="primary-outline">
+              Recommencer un nouveau parcours
+            </button>
+          </div>
+        </section>
+
+        <!-- Mentions légales -->
+        <section id="section-mentions" class="card hidden">
+          <h2>Mentions légales & confidentialité</h2>
+          <p>
+            Cet outil est proposé par une association à but non lucratif dans un
+            objectif d’information sur les droits au séjour. Il ne constitue pas
+            un conseil juridique individualisé.
+          </p>
+          <p>
+            Aucune des réponses que vous saisissez n’est enregistrée sur un
+            serveur. Toutes les informations restent dans votre navigateur et
+            sont perdues si vous fermez ou actualisez la page.
+          </p>
+          <p>
+            Pour un accompagnement personnalisé, rapprochez-vous directement de
+            l’association (permanence, téléphone, courriel).
+          </p>
+          <button id="btn-retour-accueil" class="secondary">
+            Retour au questionnaire
+          </button>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Cet outil ne remplace pas un conseil juridique personnalisé. Vérifiez
+          toujours votre situation avec un professionnel ou l’association.
+        </p>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+  </html>
+
+
