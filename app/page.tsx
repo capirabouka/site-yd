@@ -10,7 +10,7 @@ export default function HomePage() {
           <p className="hero-asso">
             sur le site de l’association
             <br />
-            You Don’t Need To Pay For That (YD)
+            You Don’t Need To Pay For That
           </p>
         </div>
         <div className="hero-image-wrap">

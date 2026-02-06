@@ -12,11 +12,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="fr">
       <body className="min-h-screen bg-white text-slate-900 antialiased">
         <div className="flex min-h-screen flex-col">
-          <header className="mx-auto w-full max-w-4xl border-b border-slate-200 px-4 pb-4 pt-6">
-            <h1 className="text-2xl font-semibold text-slate-900">
+          <header className="header-barre min-h-[100px] w-full border-none bg-cover bg-center bg-no-repeat px-6 pb-4 pt-4">
+            <h1 className="text-xl font-semibold text-slate-900 drop-shadow-[0_0_2px_rgba(255,255,255,0.9)]">
               Assistant titre de séjour
             </h1>
-            <p className="mt-1 text-sm text-slate-600">
+            <p className="mt-1 text-sm text-slate-600 drop-shadow-[0_0_2px_rgba(255,255,255,0.8)]">
               Outil anonyme proposé par l&apos;association pour vous aider à
               comprendre vos droits. Aucune donnée n&apos;est enregistrée.
             </p>

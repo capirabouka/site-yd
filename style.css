@@ -26,12 +26,16 @@ body {
 
 .header {
   width: 100%;
+  min-height: 200px;
   display: flex;
   justify-content: space-between;
   gap: 12px;
   align-items: center;
-  padding: 10px 24px 12px;
-  background: #1d4ed8; /* bleu administratif */
+  padding: 12px 24px 14px;
+  background-image: url("./barre%20tache.jpg"), url("./barre%20tache.jpg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: left top, right top;
+  background-size: 50% auto;
   color: #ffffff;
   border-bottom: none;
 }
@@ -44,29 +48,33 @@ body {
 }
 
 .brand-mark {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 999px;
-  background: #ffffff; /* fond blanc */
-  color: #c026d3; /* lettres rose/violet */
+  background: #ffffff;
+  color: #c026d3;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
-  font-weight: 700;
-  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
 .header h1 {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 .header p {
   margin: 4px 0 0;
-  font-size: 0.85rem;
-  color: #fef2f2;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 .top-nav {
@@ -80,16 +88,18 @@ body {
 .nav-link {
   border: none;
   background: transparent;
-  color: #e5e7eb;
-  font-size: 0.8rem;
-  padding: 6px 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 6px 10px;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 .nav-link:hover {
-  background: rgba(37, 99, 235, 0.35);
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .lang-switch {
@@ -102,16 +112,18 @@ body {
 .lang {
   border-radius: 999px;
   border: none;
-  padding: 4px 7px;
-  font-size: 0.7rem;
+  padding: 5px 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
   cursor: pointer;
   background: transparent;
-  color: #e5e7eb;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 .lang.active {
-  background: #e5e7eb;
-  color: #1d4ed8;
+  background: rgba(0, 0, 0, 0.25);
+  color: #ffffff;
 }
 
 .lang:disabled {
@@ -179,12 +191,40 @@ body {
   letter-spacing: 0.02em;
 }
 
+.hero-headline-inline {
+  margin: 0;
+  line-height: 1.1;
+}
+
+.hero-headline-inline .hero-asso {
+  margin: 0 0 0 0.2em;
+}
+
+.hero-yd-title {
+  position: absolute;
+  top: 14%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: 0;
+  font-family: "Kirang Haerang", cursive;
+  font-size: 3.5rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: #111827;
+  text-align: center;
+}
+
 @media (min-width: 640px) {
   .hero-bienvenue {
     font-size: 5.25rem;
   }
   .hero-asso {
     font-size: 1.6rem;
+  }
+  .hero-yd-title {
+    font-size: 5.25rem;
   }
 }
 
