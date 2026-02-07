@@ -51,6 +51,53 @@ document
     showSection("section-accueil");
   });
 
+// Bouton langue hero : cercle en haut à droite, dropdown au clic
+(function () {
+  const langCodes = { fr: "FR", en: "EN", es: "ES", ru: "RU", ar: "AR" };
+  const btn = document.getElementById("hero-lang-btn");
+  const currentEl = document.getElementById("hero-lang-current");
+  const dropdown = document.getElementById("hero-lang-dropdown");
+  const options = document.querySelectorAll(".hero-lang-option");
+
+  if (!btn || !dropdown) return;
+
+  function setLanguage(lang) {
+    const code = langCodes[lang] || "FR";
+    if (currentEl) currentEl.textContent = code;
+    options.forEach((opt) => {
+      opt.classList.toggle("active", opt.getAttribute("data-lang") === lang);
+    });
+    dropdown.setAttribute("hidden", "");
+    btn.setAttribute("aria-expanded", "false");
+  }
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = dropdown.getAttribute("hidden") == null;
+    if (isOpen) {
+      dropdown.setAttribute("hidden", "");
+      btn.setAttribute("aria-expanded", "false");
+    } else {
+      dropdown.removeAttribute("hidden");
+      btn.setAttribute("aria-expanded", "true");
+    }
+  });
+
+  options.forEach((opt) => {
+    opt.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setLanguage(opt.getAttribute("data-lang"));
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    const wrapper = btn.closest(".hero-lang-switch");
+    if (wrapper && wrapper.contains(e.target)) return;
+    dropdown.setAttribute("hidden", "");
+    btn.setAttribute("aria-expanded", "false");
+  });
+})();
+
 // Étape 1 -> Étape 2 (vérifie juste que l'âge est rempli)
 document.getElementById("to-step2").addEventListener("click", () => {
   const age = document.getElementById("age").value.trim();

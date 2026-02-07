@@ -40,11 +40,45 @@ body {
   border-bottom: none;
 }
 
+.header-inner {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.header-below-hero {
+  margin-top: 2.5rem;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  box-sizing: border-box;
+  padding-left: 0;
+}
+
+.header-below-hero .header-inner {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+  padding-left: 24px;
+  padding-right: 32px;
+}
+
+
 .brand {
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
+}
+
+.brand > div {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  flex-wrap: nowrap;
 }
 
 .brand-mark {
@@ -67,35 +101,41 @@ body {
   font-weight: 700;
   color: #ffffff;
   text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  white-space: nowrap;
 }
 
-.header p {
-  margin: 4px 0 0;
+.header .brand p {
+  margin: 0;
   font-size: 1rem;
   font-weight: 600;
   color: #ffffff;
   text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  white-space: nowrap;
 }
 
 .top-nav {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-evenly;
+  flex: 1;
+  max-width: 100%;
   background: transparent;
-  padding: 0;
+  padding: 0 1rem;
 }
 
 .nav-link {
   border: none;
   background: transparent;
   color: #ffffff;
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 6px 10px;
+  font-family: "Kirang Haerang", cursive;
+  font-size: 1.6rem;
+  font-weight: 400;
+  padding: 10px 18px;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
   text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -163,11 +203,21 @@ body {
   box-sizing: border-box;
 }
 
-/* Pour déplacer "Bienvenue" : change left (ex: 10%, 20%, 30%). */
-.hero-headline {
+/* Ligne du haut : "Bienvenue..." à gauche, bouton langue à droite */
+.hero-top-row {
   position: absolute;
   top: 2%;
-  left: 5%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 5%;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.hero-headline {
   max-width: 55%;
   text-align: left;
 }
@@ -246,6 +296,97 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Bouton langue en cercle en haut à droite */
+.hero-lang-switch {
+  position: relative;
+}
+
+.hero-lang-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(145deg, #ffffff 0%, #fdf4ff 100%);
+  color: #c084d4;
+  font-family: "Kirang Haerang", cursive;
+  font-size: 1.5rem;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 0 2px #e879f9,
+    0 4px 14px rgba(232, 121, 249, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.hero-lang-btn:hover {
+  background: linear-gradient(145deg, #f0abfc 0%, #e879f9 100%);
+  color: #ffffff;
+  transform: scale(1.05);
+  box-shadow:
+    0 0 0 2px #e879f9,
+    0 6px 20px rgba(232, 121, 249, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.hero-lang-btn[aria-expanded="true"] {
+  background: linear-gradient(145deg, #f0abfc 0%, #e879f9 100%);
+  color: #ffffff;
+  box-shadow:
+    0 0 0 2px #c084d4,
+    0 6px 20px rgba(232, 121, 249, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.hero-lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 140px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 6px 0;
+  z-index: 10;
+  border: 1px solid #e5e7eb;
+}
+
+.hero-lang-dropdown[hidden] {
+  display: none;
+}
+
+.hero-lang-dropdown:not([hidden]) {
+  display: block;
+}
+
+.hero-lang-option {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #111827;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.hero-lang-option:hover {
+  background: #f3f4f6;
+}
+
+.hero-lang-option.active {
+  background: #fdf4ff;
+  color: #c084d4;
+  font-weight: 600;
 }
 
 /* Bloc YD + questionnaire : EN DESSOUS du hero, il faut scroller pour le voir. */
@@ -582,8 +723,16 @@ select:focus {
 }
 
 @media (max-width: 600px) {
-  .header {
+  .header,
+  .header-inner {
     flex-direction: column;
+  }
+  .brand > div {
+    flex-wrap: wrap;
+  }
+  .header h1,
+  .header .brand p {
+    white-space: normal;
   }
 }
 
