@@ -58,12 +58,23 @@ body {
   padding-left: 0;
 }
 
-.header-below-hero .header-inner {
+.header-below-hero .header-inner,
+.header-top .header-inner {
   margin-left: 0;
   margin-right: 0;
   max-width: 100%;
   padding-left: 24px;
   padding-right: 32px;
+}
+
+/* Barre tache en haut (Questionnaire / Mentions / Contact) : même rendu que below-hero */
+.header-top {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.header-top.hidden {
+  display: none;
 }
 
 
@@ -235,7 +246,7 @@ body {
 .hero-asso {
   margin: 0.35em 0 0;
   font-family: "Kirang Haerang", cursive;
-  font-size: 1.35rem;
+  font-size: 2rem;
   font-weight: 400;
   color: #1d4ed8;
   letter-spacing: 0.02em;
@@ -271,7 +282,7 @@ body {
     font-size: 5.25rem;
   }
   .hero-asso {
-    font-size: 1.6rem;
+    font-size: 2.5rem;
   }
   .hero-yd-title {
     font-size: 5.25rem;

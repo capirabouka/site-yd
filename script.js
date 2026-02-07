@@ -5,6 +5,17 @@ function showSection(id) {
     .forEach((sec) => sec.classList.add("hidden"));
   const target = document.getElementById(id);
   if (target) target.classList.remove("hidden");
+
+  var headerTop = document.getElementById("header-top");
+  if (headerTop) {
+    if (id === "section-accueil") {
+      headerTop.classList.add("hidden");
+      headerTop.setAttribute("aria-hidden", "true");
+    } else {
+      headerTop.classList.remove("hidden");
+      headerTop.setAttribute("aria-hidden", "false");
+    }
+  }
 }
 
 function getRadio(name) {
@@ -25,24 +36,18 @@ document.getElementById("btn-demarrer").addEventListener("click", () => {
   showSection("section-step1");
 });
 
-// Clic sur le logo / nom YD : retour à la page d'accueil
-document.getElementById("btn-home-logo").addEventListener("click", () => {
-  showSection("section-accueil");
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-document.getElementById("btn-mentions").addEventListener("click", () => {
-  showSection("section-mentions");
-});
-
-document.getElementById("btn-accueil").addEventListener("click", () => {
-  showSection("section-step1");
-});
-
-document.getElementById("btn-contact").addEventListener("click", () => {
-  showSection("section-step4");
-  const panel = document.getElementById("contact-panel");
-  if (panel) panel.classList.remove("hidden");
+// Nav barre tache (accueil + questionnaire / mentions / contact) : délégation pour les 2 barres
+document.body.addEventListener("click", function (e) {
+  var el = e.target.closest(".js-nav[data-section]");
+  if (!el) return;
+  var section = el.getAttribute("data-section");
+  if (!section) return;
+  showSection(section);
+  if (section === "section-accueil") window.scrollTo({ top: 0, behavior: "smooth" });
+  if (section === "section-step4") {
+    var panel = document.getElementById("contact-panel");
+    if (panel) panel.classList.remove("hidden");
+  }
 });
 
 document

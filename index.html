@@ -24,6 +24,26 @@
   </head>
   <body>
     <div class="app">
+      <!-- Barre tache en haut (Questionnaire / Mentions / Contact) -->
+      <header class="header header-top hidden" id="header-top" aria-hidden="true">
+        <div class="header-inner">
+          <div class="brand js-nav" data-section="section-accueil">
+            <div class="brand-mark">YD</div>
+            <div>
+              <h1>Assistant titre de séjour</h1>
+              <p>
+                YD – You Don’t Have To est une association qui accompagne les
+                personnes étrangères dans leurs démarches de séjour.
+              </p>
+            </div>
+          </div>
+          <nav class="top-nav">
+            <button type="button" class="nav-link js-nav" data-section="section-step1">Questionnaire</button>
+            <button type="button" class="nav-link js-nav" data-section="section-mentions">Mentions légales</button>
+            <button type="button" class="nav-link js-nav" data-section="section-step4">Contact</button>
+          </nav>
+        </div>
+      </header>
       <main class="main-centered">
         <!-- Accueil -->
         <section id="section-accueil">
@@ -58,7 +78,7 @@
           </div>
           <header class="header header-below-hero">
             <div class="header-inner">
-            <div class="brand" id="btn-home-logo">
+            <div class="brand js-nav" data-section="section-accueil" id="btn-home-logo">
               <div class="brand-mark">YD</div>
               <div>
                 <h1>Assistant titre de séjour</h1>
@@ -69,9 +89,9 @@
               </div>
             </div>
             <nav class="top-nav">
-              <button id="btn-accueil" class="nav-link">Questionnaire</button>
-              <button id="btn-mentions" class="nav-link">Mentions légales</button>
-              <button id="btn-contact" class="nav-link">Contact</button>
+              <button type="button" id="btn-accueil" class="nav-link js-nav" data-section="section-step1">Questionnaire</button>
+              <button type="button" id="btn-mentions" class="nav-link js-nav" data-section="section-mentions">Mentions légales</button>
+              <button type="button" id="btn-contact" class="nav-link js-nav" data-section="section-step4">Contact</button>
             </nav>
             </div>
           </header>
