@@ -747,4 +747,130 @@ select:focus {
   }
 }
 
+/* ========== VERSION TÉLÉPHONE (≤768px) – ne modifie pas le desktop ========== */
+@media (max-width: 768px) {
+  .app {
+    padding: 0 0 16px;
+  }
+
+  .main-centered {
+    margin: 16px 12px 16px;
+    padding: 0 4px;
+  }
+
+  /* Hero : textes plus petits pour tenir sur l’écran */
+  .hero {
+    min-height: 85vh;
+  }
+
+  .hero-top-row {
+    padding: 0 3%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .hero-headline {
+    max-width: 75%;
+  }
+
+  .hero-bienvenue {
+    font-size: 1.85rem;
+  }
+
+  .hero-asso {
+    font-size: 1.1rem;
+  }
+
+  .hero-yd-title {
+    font-size: 1.5rem;
+    top: 10%;
+    padding: 0 8px;
+  }
+
+  .hero-image-wrap {
+    top: 32%;
+    width: 94%;
+    min-height: 180px;
+  }
+
+  /* Bouton langue : plus petit sur mobile */
+  .hero-lang-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  /* Barre tache : plus compacte sur téléphone */
+  .header {
+    min-height: auto;
+    padding: 14px 16px;
+  }
+
+  .header-below-hero {
+    margin-top: 1.5rem;
+  }
+
+  .header-below-hero .header-inner,
+  .header-top .header-inner {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .header h1 {
+    font-size: 1.25rem;
+  }
+
+  .header .brand p {
+    font-size: 0.85rem;
+  }
+
+  .top-nav {
+    gap: 0.75rem;
+    padding: 0 0.25rem;
+  }
+
+  .nav-link {
+    font-size: 1.1rem;
+    padding: 10px 12px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Contenu accueil (texte + CTA) */
+  .hero-content {
+    padding: 0 4px;
+  }
+
+  .hero-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-cta {
+    padding: 12px 20px;
+    min-height: 48px;
+    font-size: 1rem;
+  }
+
+  /* Cartes questionnaire / mentions / contact */
+  .card {
+    padding: 14px 12px;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+  }
+
+  .grid-2,
+  .grid-3 {
+    gap: 10px;
+  }
+
+  .primary {
+    min-height: 44px;
+    padding: 10px 16px;
+  }
+}
+
 
