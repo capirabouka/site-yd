@@ -77,6 +77,24 @@ body {
   display: none;
 }
 
+/* Bouton YD dans la nav : visible uniquement sur mobile, à gauche de Questionnaire */
+.nav-yd-home {
+  display: none;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.nav-yd-home .brand-mark {
+  width: 44px;
+  height: 44px;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
 
 .brand {
   display: flex;
@@ -375,6 +393,7 @@ body {
   display: block;
 }
 
+
 .hero-lang-option {
   display: block;
   width: 100%;
@@ -398,6 +417,12 @@ body {
   background: #fdf4ff;
   color: #c084d4;
   font-weight: 600;
+}
+
+/* Header : bouton langue visible uniquement sur mobile (à côté de Questionnaire, etc.) */
+.header-lang-switch {
+  display: none;
+  position: relative;
 }
 
 /* Bloc YD + questionnaire : EN DESSOUS du hero, il faut scroller pour le voir. */
@@ -782,32 +807,88 @@ select:focus {
   }
 
   .hero-yd-title {
-    font-size: 1.5rem;
+    font-size: 2.1rem;
     top: 10%;
     padding: 0 8px;
   }
 
   .hero-image-wrap {
-    top: 32%;
+    top: 26%;
     width: 94%;
     min-height: 180px;
   }
 
-  /* Bouton langue : plus petit sur mobile */
-  .hero-lang-btn {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
+  /* Hero : cacher le bouton langue (déplacé dans la barre tache sur mobile) */
+  .hero-top-row .hero-lang-switch {
+    display: none;
   }
 
-  /* Barre tache : plus compacte sur téléphone */
+  /* Barre tache mobile : image plus grande, pleine largeur ; boutons qui rentrent */
   .header {
-    min-height: auto;
-    padding: 14px 16px;
+    min-height: 140px;
+    padding: 12px 10px;
+    background-image: url("./barre%20tache.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+  }
+
+  .header .header-inner {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 36px 10px 14px;
+    gap: 0.5rem;
+  }
+
+  /* Mobile : masquer le bloc YD / texte, garder seulement Questionnaire, Mentions, Contact, Traduction sur l’image */
+  .header .brand {
+    display: none;
+  }
+
+  .nav-yd-home {
+    display: flex;
+  }
+
+  .nav-yd-home .brand-mark {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+
+  .header .top-nav {
+    flex: 1;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0;
+    flex-wrap: nowrap;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .header .nav-link {
+    font-size: 0.9rem;
+    padding: 8px 6px;
+    min-height: 40px;
+    white-space: nowrap;
+  }
+
+  .header-lang-switch {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .header-lang-switch .hero-lang-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
   }
 
   .header-below-hero {
     margin-top: 1.5rem;
+    position: relative;
+    z-index: 2;
   }
 
   .header-below-hero .header-inner,
@@ -822,11 +903,6 @@ select:focus {
 
   .header .brand p {
     font-size: 0.85rem;
-  }
-
-  .top-nav {
-    gap: 0.75rem;
-    padding: 0 0.25rem;
   }
 
   .nav-link {

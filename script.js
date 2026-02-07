@@ -56,50 +56,61 @@ document
     showSection("section-accueil");
   });
 
-// Bouton langue hero : cercle en haut à droite, dropdown au clic
+// Bouton langue : hero + barres (mobile). Sync entre tous les switchers.
 (function () {
   const langCodes = { fr: "FR", en: "EN", es: "ES", ru: "RU", ar: "AR" };
-  const btn = document.getElementById("hero-lang-btn");
-  const currentEl = document.getElementById("hero-lang-current");
-  const dropdown = document.getElementById("hero-lang-dropdown");
-  const options = document.querySelectorAll(".hero-lang-option");
-
-  if (!btn || !dropdown) return;
 
   function setLanguage(lang) {
     const code = langCodes[lang] || "FR";
-    if (currentEl) currentEl.textContent = code;
-    options.forEach((opt) => {
+    document.querySelectorAll(".lang-current").forEach(function (el) {
+      el.textContent = code;
+    });
+    document.querySelectorAll(".hero-lang-option").forEach(function (opt) {
       opt.classList.toggle("active", opt.getAttribute("data-lang") === lang);
     });
-    dropdown.setAttribute("hidden", "");
-    btn.setAttribute("aria-expanded", "false");
+    document.querySelectorAll(".lang-dropdown").forEach(function (d) {
+      d.setAttribute("hidden", "");
+    });
+    document.querySelectorAll(".lang-btn").forEach(function (b) {
+      b.setAttribute("aria-expanded", "false");
+    });
   }
 
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const isOpen = dropdown.getAttribute("hidden") == null;
-    if (isOpen) {
-      dropdown.setAttribute("hidden", "");
-      btn.setAttribute("aria-expanded", "false");
-    } else {
-      dropdown.removeAttribute("hidden");
-      btn.setAttribute("aria-expanded", "true");
-    }
-  });
-
-  options.forEach((opt) => {
-    opt.addEventListener("click", (e) => {
+  document.body.addEventListener("click", function (e) {
+    var opt = e.target.closest(".hero-lang-option");
+    if (opt) {
       e.stopPropagation();
       setLanguage(opt.getAttribute("data-lang"));
-    });
-  });
-
-  document.addEventListener("click", (e) => {
-    const wrapper = btn.closest(".hero-lang-switch");
-    if (wrapper && wrapper.contains(e.target)) return;
-    dropdown.setAttribute("hidden", "");
-    btn.setAttribute("aria-expanded", "false");
+      return;
+    }
+    var btn = e.target.closest(".lang-btn");
+    if (btn) {
+      e.stopPropagation();
+      var wrap = btn.closest(".hero-lang-switch, .header-lang-switch");
+      var dropdown = wrap ? wrap.querySelector(".lang-dropdown") : null;
+      if (!dropdown) return;
+      var isOpen = dropdown.getAttribute("hidden") == null;
+      document.querySelectorAll(".lang-dropdown").forEach(function (d) {
+        d.setAttribute("hidden", "");
+      });
+      document.querySelectorAll(".lang-btn").forEach(function (b) {
+        b.setAttribute("aria-expanded", "false");
+      });
+      if (!isOpen) {
+        dropdown.removeAttribute("hidden");
+        btn.setAttribute("aria-expanded", "true");
+      }
+      return;
+    }
+    var inWrap = e.target.closest(".hero-lang-switch, .header-lang-switch");
+    if (!inWrap) {
+      document.querySelectorAll(".lang-dropdown").forEach(function (d) {
+        d.setAttribute("hidden", "");
+      });
+      document.querySelectorAll(".lang-btn").forEach(function (b) {
+        b.setAttribute("aria-expanded", "false");
+      });
+    }
   });
 })();
 
