@@ -99,6 +99,11 @@ document
       if (!isOpen) {
         dropdown.removeAttribute("hidden");
         btn.setAttribute("aria-expanded", "true");
+        if (wrap && wrap.classList.contains("header-lang-switch")) {
+          requestAnimationFrame(function () {
+            dropdown.scrollIntoView({ block: "nearest", behavior: "smooth" });
+          });
+        }
       }
       return;
     }
@@ -111,6 +116,66 @@ document
         b.setAttribute("aria-expanded", "false");
       });
     }
+  });
+})();
+
+// Infos pratiques : carte interactive des préfectures
+(function () {
+  var detail = document.getElementById("prefecture-detail");
+  var detailName = document.getElementById("prefecture-detail-name");
+  var panEl = document.getElementById("prefecture-pan");
+  var numeriqueEl = document.getElementById("prefecture-numerique");
+  var guichetEl = document.getElementById("prefecture-guichet");
+
+  var modalitiesByDep = {
+    "75": {
+      pan: "Préfecture de police de Paris. Procédure d’accueil au séjour selon votre situation (titre de séjour, AES).",
+      numerique: "Prise de rendez-vous en ligne sur le site de la préfecture de police. Dépôt de pièces selon les cas (téléprocédure ou envoi).",
+      guichet: "Accueil sur rendez-vous. Se présenter avec le récépissé et les pièces demandées."
+    },
+    "69": {
+      pan: "Préfecture du Rhône (Lyon). PAN selon votre situation.",
+      numerique: "Rendez-vous et téléprocédures sur le site de la préfecture du Rhône.",
+      guichet: "Préfecture de Lyon, accueil sur rendez-vous."
+    },
+    "13": {
+      pan: "Préfecture des Bouches-du-Rhône (Marseille). Procédure d’accueil au séjour.",
+      numerique: "Prise de rendez-vous en ligne, dépôt dématérialisé selon les démarches.",
+      guichet: "Accueil sur rendez-vous à la préfecture ou en sous-préfectures."
+    },
+    "33": {
+      pan: "Préfecture de la Gironde (Bordeaux). PAN et instructions selon votre dossier.",
+      numerique: "Site de la préfecture : rendez-vous et téléprocédures.",
+      guichet: "Accueil sur rendez-vous."
+    },
+    "31": {
+      pan: "Préfecture de la Haute-Garonne (Toulouse). Procédure d’accueil au séjour.",
+      numerique: "Rendez-vous et dépôt en ligne selon les cas.",
+      guichet: "Préfecture de Toulouse, accueil sur rendez-vous."
+    }
+  };
+
+  function getModalities(dep) {
+    return modalitiesByDep[dep] || {
+      pan: "Procédure d’accueil au séjour selon votre situation. Consultez le site de la préfecture ou appelez pour les modalités à jour.",
+      numerique: "Rendez-vous et téléprocédures possibles selon les préfectures. Vérifier sur le site de la préfecture du département.",
+      guichet: "Accueil généralement sur rendez-vous. Horaires et pièces à vérifier sur le site de la préfecture."
+    };
+  }
+
+  document.body.addEventListener("click", function (e) {
+    var btn = e.target.closest(".prefecture-btn");
+    if (!btn || !detail) return;
+    var dep = btn.getAttribute("data-dep");
+    var name = btn.getAttribute("data-name");
+    if (!dep || !name) return;
+    var mod = getModalities(dep);
+    detailName.textContent = name + " (" + dep + ")";
+    panEl.textContent = mod.pan;
+    numeriqueEl.textContent = mod.numerique;
+    guichetEl.textContent = mod.guichet;
+    detail.removeAttribute("hidden");
+    detail.scrollIntoView({ block: "nearest", behavior: "smooth" });
   });
 })();
 
