@@ -266,7 +266,7 @@ body {
   font-family: "Kirang Haerang", cursive;
   font-size: 2rem;
   font-weight: 400;
-  color: #1d4ed8;
+  color: #c026d3;
   letter-spacing: 0.02em;
 }
 
@@ -813,7 +813,7 @@ select:focus {
   }
 
   .hero-image-wrap {
-    top: 26%;
+    top: 32%;
     width: 94%;
     min-height: 180px;
   }
