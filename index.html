@@ -24,8 +24,8 @@
   </head>
   <body>
     <div class="app">
-      <!-- Barre tache en haut (Questionnaire / Mentions / Contact) -->
-      <header class="header header-top hidden" id="header-top" aria-hidden="true">
+      <!-- Barre de tâche : toujours visible, même sur toutes les pages -->
+      <header class="header header-bar" id="header-bar">
         <div class="header-inner">
           <div class="brand js-nav" data-section="section-accueil">
             <div class="brand-mark">YD</div>
@@ -41,7 +41,7 @@
             <button type="button" class="nav-home js-nav" data-section="section-accueil" aria-label="Page d'accueil" title="Page d'accueil">
               <span class="nav-icon-house" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" /><path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" /></svg></span>
             </button>
-            <button type="button" class="nav-link js-nav" data-section="section-step1" title="Questionnaire">Questionnaire</button>
+            <button type="button" id="btn-accueil" class="nav-link js-nav" data-section="section-step1" title="Questionnaire">Questionnaire</button>
             <button type="button" class="nav-link js-nav" data-section="section-fiches" title="Fiches théoriques">Fiches théoriques</button>
             <button type="button" class="nav-link js-nav" data-section="section-infos" data-tooltip="pratiques préfectorales">Infos pratiques</button>
             <button type="button" class="nav-link js-nav" data-section="section-permanences" data-tooltip="dates, horaires, lieu, inscription">Nos permanences</button>
@@ -65,43 +65,6 @@
       <main class="main-centered">
         <!-- Accueil -->
         <section id="section-accueil">
-          <header class="header header-below-hero">
-            <div class="header-inner">
-            <div class="brand js-nav" data-section="section-accueil" id="btn-home-logo">
-              <div class="brand-mark">YD</div>
-              <div class="brand-text">
-                <h1>Assistant titre de séjour</h1>
-                <p>
-                  YD – You Don't Have To est une association qui accompagne les
-                  personnes étrangères dans leurs démarches de séjour.
-                </p>
-              </div>
-            </div>
-            <nav class="top-nav">
-              <button type="button" class="nav-home js-nav" data-section="section-accueil" aria-label="Page d'accueil" title="Page d'accueil">
-                <span class="nav-icon-house" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" /><path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" /></svg></span>
-              </button>
-              <button type="button" id="btn-accueil" class="nav-link js-nav" data-section="section-step1" title="Questionnaire">Questionnaire</button>
-              <button type="button" class="nav-link js-nav" data-section="section-fiches" title="Fiches théoriques">Fiches théoriques</button>
-              <button type="button" class="nav-link js-nav" data-section="section-infos" data-tooltip="pratiques préfectorales">Infos pratiques</button>
-              <button type="button" class="nav-link js-nav" data-section="section-permanences" data-tooltip="dates, horaires, lieu, inscription">Nos permanences</button>
-              <button type="button" class="nav-link js-nav" data-section="section-engagez" data-tooltip="don, devenir membre, bénévoles">Engagez-vous</button>
-              <div class="header-lang-switch">
-                <button type="button" class="hero-lang-btn lang-btn" aria-label="Choisir la langue" aria-expanded="false" aria-haspopup="true">
-                  <span class="lang-current">FR</span>
-                  <span class="langues-label">Langues</span>
-                </button>
-                <div class="hero-lang-dropdown lang-dropdown" role="menu" hidden>
-                  <button type="button" class="hero-lang-option active" role="menuitem" data-lang="fr">Français</button>
-                  <button type="button" class="hero-lang-option" role="menuitem" data-lang="en">English</button>
-                  <button type="button" class="hero-lang-option" role="menuitem" data-lang="es">Español</button>
-                  <button type="button" class="hero-lang-option" role="menuitem" data-lang="ru">Русский</button>
-                  <button type="button" class="hero-lang-option" role="menuitem" data-lang="ar">العربية</button>
-                </div>
-              </div>
-            </nav>
-            </div>
-          </header>
           <div class="hero">
             <div class="hero-top-row">
               <div class="hero-headline">
@@ -828,105 +791,13 @@
           <!-- Cartographie interactive des préfectures -->
           <div class="infos-block infos-map-block">
             <h3>Cartographie des préfectures</h3>
-            <p class="infos-map-intro">Sélectionnez un département pour afficher les modalités de dépôt de la préfecture (PAN, dépôt numérique, guichet).</p>
-            <div class="prefecture-map" role="list" aria-label="Liste des départements">
-              <!-- Départements métropolitains (échantillon + principaux) -->
-              <button type="button" class="prefecture-btn" data-dep="75" data-name="Paris">75</button>
-              <button type="button" class="prefecture-btn" data-dep="69" data-name="Rhône">69</button>
-              <button type="button" class="prefecture-btn" data-dep="13" data-name="Bouches-du-Rhône">13</button>
-              <button type="button" class="prefecture-btn" data-dep="33" data-name="Gironde">33</button>
-              <button type="button" class="prefecture-btn" data-dep="31" data-name="Haute-Garonne">31</button>
-              <button type="button" class="prefecture-btn" data-dep="59" data-name="Nord">59</button>
-              <button type="button" class="prefecture-btn" data-dep="44" data-name="Loire-Atlantique">44</button>
-              <button type="button" class="prefecture-btn" data-dep="67" data-name="Bas-Rhin">67</button>
-              <button type="button" class="prefecture-btn" data-dep="34" data-name="Hérault">34</button>
-              <button type="button" class="prefecture-btn" data-dep="06" data-name="Alpes-Maritimes">06</button>
-              <button type="button" class="prefecture-btn" data-dep="35" data-name="Ille-et-Vilaine">35</button>
-              <button type="button" class="prefecture-btn" data-dep="38" data-name="Isère">38</button>
-              <button type="button" class="prefecture-btn" data-dep="64" data-name="Pyrénées-Atlantiques">64</button>
-              <button type="button" class="prefecture-btn" data-dep="83" data-name="Var">83</button>
-              <button type="button" class="prefecture-btn" data-dep="29" data-name="Finistère">29</button>
-              <button type="button" class="prefecture-btn" data-dep="42" data-name="Loire">42</button>
-              <button type="button" class="prefecture-btn" data-dep="74" data-name="Haute-Savoie">74</button>
-              <button type="button" class="prefecture-btn" data-dep="84" data-name="Vaucluse">84</button>
-              <button type="button" class="prefecture-btn" data-dep="37" data-name="Indre-et-Loire">37</button>
-              <button type="button" class="prefecture-btn" data-dep="72" data-name="Sarthe">72</button>
-              <button type="button" class="prefecture-btn" data-dep="01" data-name="Ain">01</button>
-              <button type="button" class="prefecture-btn" data-dep="02" data-name="Aisne">02</button>
-              <button type="button" class="prefecture-btn" data-dep="03" data-name="Allier">03</button>
-              <button type="button" class="prefecture-btn" data-dep="04" data-name="Alpes-de-Haute-Provence">04</button>
-              <button type="button" class="prefecture-btn" data-dep="05" data-name="Hautes-Alpes">05</button>
-              <button type="button" class="prefecture-btn" data-dep="07" data-name="Ardèche">07</button>
-              <button type="button" class="prefecture-btn" data-dep="08" data-name="Ardennes">08</button>
-              <button type="button" class="prefecture-btn" data-dep="09" data-name="Ariège">09</button>
-              <button type="button" class="prefecture-btn" data-dep="10" data-name="Aube">10</button>
-              <button type="button" class="prefecture-btn" data-dep="11" data-name="Aude">11</button>
-              <button type="button" class="prefecture-btn" data-dep="12" data-name="Aveyron">12</button>
-              <button type="button" class="prefecture-btn" data-dep="14" data-name="Calvados">14</button>
-              <button type="button" class="prefecture-btn" data-dep="15" data-name="Cantal">15</button>
-              <button type="button" class="prefecture-btn" data-dep="16" data-name="Charente">16</button>
-              <button type="button" class="prefecture-btn" data-dep="17" data-name="Charente-Maritime">17</button>
-              <button type="button" class="prefecture-btn" data-dep="18" data-name="Cher">18</button>
-              <button type="button" class="prefecture-btn" data-dep="19" data-name="Corrèze">19</button>
-              <button type="button" class="prefecture-btn" data-dep="21" data-name="Côte-d'Or">21</button>
-              <button type="button" class="prefecture-btn" data-dep="22" data-name="Côtes-d'Armor">22</button>
-              <button type="button" class="prefecture-btn" data-dep="23" data-name="Creuse">23</button>
-              <button type="button" class="prefecture-btn" data-dep="24" data-name="Dordogne">24</button>
-              <button type="button" class="prefecture-btn" data-dep="25" data-name="Doubs">25</button>
-              <button type="button" class="prefecture-btn" data-dep="26" data-name="Drôme">26</button>
-              <button type="button" class="prefecture-btn" data-dep="27" data-name="Eure">27</button>
-              <button type="button" class="prefecture-btn" data-dep="28" data-name="Eure-et-Loir">28</button>
-              <button type="button" class="prefecture-btn" data-dep="30" data-name="Gard">30</button>
-              <button type="button" class="prefecture-btn" data-dep="32" data-name="Gers">32</button>
-              <button type="button" class="prefecture-btn" data-dep="36" data-name="Indre">36</button>
-              <button type="button" class="prefecture-btn" data-dep="39" data-name="Jura">39</button>
-              <button type="button" class="prefecture-btn" data-dep="40" data-name="Landes">40</button>
-              <button type="button" class="prefecture-btn" data-dep="41" data-name="Loir-et-Cher">41</button>
-              <button type="button" class="prefecture-btn" data-dep="43" data-name="Haute-Loire">43</button>
-              <button type="button" class="prefecture-btn" data-dep="45" data-name="Loiret">45</button>
-              <button type="button" class="prefecture-btn" data-dep="46" data-name="Lot">46</button>
-              <button type="button" class="prefecture-btn" data-dep="47" data-name="Lot-et-Garonne">47</button>
-              <button type="button" class="prefecture-btn" data-dep="48" data-name="Lozère">48</button>
-              <button type="button" class="prefecture-btn" data-dep="49" data-name="Maine-et-Loire">49</button>
-              <button type="button" class="prefecture-btn" data-dep="50" data-name="Manche">50</button>
-              <button type="button" class="prefecture-btn" data-dep="51" data-name="Marne">51</button>
-              <button type="button" class="prefecture-btn" data-dep="52" data-name="Haute-Marne">52</button>
-              <button type="button" class="prefecture-btn" data-dep="53" data-name="Mayenne">53</button>
-              <button type="button" class="prefecture-btn" data-dep="54" data-name="Meurthe-et-Moselle">54</button>
-              <button type="button" class="prefecture-btn" data-dep="55" data-name="Meuse">55</button>
-              <button type="button" class="prefecture-btn" data-dep="56" data-name="Morbihan">56</button>
-              <button type="button" class="prefecture-btn" data-dep="57" data-name="Moselle">57</button>
-              <button type="button" class="prefecture-btn" data-dep="58" data-name="Nièvre">58</button>
-              <button type="button" class="prefecture-btn" data-dep="60" data-name="Oise">60</button>
-              <button type="button" class="prefecture-btn" data-dep="61" data-name="Orne">61</button>
-              <button type="button" class="prefecture-btn" data-dep="62" data-name="Pas-de-Calais">62</button>
-              <button type="button" class="prefecture-btn" data-dep="63" data-name="Puy-de-Dôme">63</button>
-              <button type="button" class="prefecture-btn" data-dep="65" data-name="Hautes-Pyrénées">65</button>
-              <button type="button" class="prefecture-btn" data-dep="66" data-name="Pyrénées-Orientales">66</button>
-              <button type="button" class="prefecture-btn" data-dep="68" data-name="Haut-Rhin">68</button>
-              <button type="button" class="prefecture-btn" data-dep="70" data-name="Haute-Saône">70</button>
-              <button type="button" class="prefecture-btn" data-dep="71" data-name="Saône-et-Loire">71</button>
-              <button type="button" class="prefecture-btn" data-dep="73" data-name="Savoie">73</button>
-              <button type="button" class="prefecture-btn" data-dep="76" data-name="Seine-Maritime">76</button>
-              <button type="button" class="prefecture-btn" data-dep="77" data-name="Seine-et-Marne">77</button>
-              <button type="button" class="prefecture-btn" data-dep="78" data-name="Yvelines">78</button>
-              <button type="button" class="prefecture-btn" data-dep="79" data-name="Deux-Sèvres">79</button>
-              <button type="button" class="prefecture-btn" data-dep="80" data-name="Somme">80</button>
-              <button type="button" class="prefecture-btn" data-dep="81" data-name="Tarn">81</button>
-              <button type="button" class="prefecture-btn" data-dep="82" data-name="Tarn-et-Garonne">82</button>
-              <button type="button" class="prefecture-btn" data-dep="85" data-name="Vendée">85</button>
-              <button type="button" class="prefecture-btn" data-dep="86" data-name="Vienne">86</button>
-              <button type="button" class="prefecture-btn" data-dep="87" data-name="Haute-Vienne">87</button>
-              <button type="button" class="prefecture-btn" data-dep="88" data-name="Vosges">88</button>
-              <button type="button" class="prefecture-btn" data-dep="89" data-name="Yonne">89</button>
-              <button type="button" class="prefecture-btn" data-dep="90" data-name="Territoire de Belfort">90</button>
-              <button type="button" class="prefecture-btn" data-dep="91" data-name="Essonne">91</button>
-              <button type="button" class="prefecture-btn" data-dep="92" data-name="Hauts-de-Seine">92</button>
-              <button type="button" class="prefecture-btn" data-dep="93" data-name="Seine-Saint-Denis">93</button>
-              <button type="button" class="prefecture-btn" data-dep="94" data-name="Val-de-Marne">94</button>
-              <button type="button" class="prefecture-btn" data-dep="95" data-name="Val-d'Oise">95</button>
-              <button type="button" class="prefecture-btn" data-dep="2A" data-name="Corse-du-Sud">2A</button>
-              <button type="button" class="prefecture-btn" data-dep="2B" data-name="Haute-Corse">2B</button>
+            <p class="infos-map-intro">Cliquez sur un département sur la carte pour afficher les modalités de dépôt de la préfecture (PAN, dépôt numérique, guichet).</p>
+            <div class="prefecture-map-container" id="prefecture-map-container" aria-label="Carte interactive des préfectures de France">
+              <!-- Emplacement pour la future carte interactive (Leaflet, Mapbox, SVG cliquable, etc.) -->
+              <div class="prefecture-map-placeholder">
+                <p>Carte des préfectures à intégrer</p>
+                <p class="prefecture-map-placeholder-hint">Insérer ici la carte interactive (iframe, canvas ou librairie cartographique). Le bloc «&nbsp;Modalités&nbsp;» ci-dessous s’affichera au clic sur un département.</p>
+              </div>
             </div>
             <div id="prefecture-detail" class="prefecture-detail" hidden>
               <h4 id="prefecture-detail-title" class="prefecture-detail-title">Préfecture de <span id="prefecture-detail-name"></span></h4>
@@ -1017,17 +888,6 @@
         </section>
       </main>
 
-      <footer class="footer">
-        <p>
-          Cet outil ne remplace pas un conseil juridique personnalisé. Vérifiez
-          toujours votre situation avec un professionnel ou l’association.
-        </p>
-        <p class="footer-links">
-          <button type="button" class="footer-link js-nav" data-section="section-mentions">Mentions légales</button>
-          <span aria-hidden="true"> · </span>
-          <button type="button" class="footer-link js-nav" data-section="section-step4">Contact</button>
-        </p>
-      </footer>
     </div>
 
     <script src="./script.js"></script>

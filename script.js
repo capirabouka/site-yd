@@ -5,17 +5,6 @@ function showSection(id) {
     .forEach((sec) => sec.classList.add("hidden"));
   const target = document.getElementById(id);
   if (target) target.classList.remove("hidden");
-
-  var headerTop = document.getElementById("header-top");
-  if (headerTop) {
-    if (id === "section-accueil") {
-      headerTop.classList.add("hidden");
-      headerTop.setAttribute("aria-hidden", "true");
-    } else {
-      headerTop.classList.remove("hidden");
-      headerTop.setAttribute("aria-hidden", "false");
-    }
-  }
 }
 
 function getRadio(name) {
