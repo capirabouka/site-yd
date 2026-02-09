@@ -39,6 +39,22 @@ document.body.addEventListener("click", function (e) {
   }
 });
 
+// Questionnaire Q3–Q8 : bouton Continuer → questionnaire suivant ou AES
+document.body.addEventListener("click", function (e) {
+  if (!e.target.closest(".js-next-questionnaire")) return;
+  goNextOrResult(false);
+});
+
+// Page résultat TS : « Retour » → dernier questionnaire rempli (questions précédentes)
+document.body.addEventListener("click", function (e) {
+  if (!e.target.closest(".js-back-from-resultat")) return;
+  if (questionnairesEnAttente.length > 0) {
+    showSection(questionnairesEnAttente[questionnairesEnAttente.length - 1]);
+  } else {
+    showSection("section-questions-evidentes");
+  }
+});
+
 document
   .getElementById("btn-retour-accueil")
   .addEventListener("click", () => {
@@ -168,14 +184,158 @@ document
   });
 })();
 
-// Étape 1 -> Étape 2 (vérifie juste que l'âge est rempli)
+// Étape 1 : routage selon algérien/tunisien et déjà TS
 document.getElementById("to-step2").addEventListener("click", () => {
   const age = document.getElementById("age").value.trim();
   if (!age) {
     alert("Merci d’indiquer au moins votre âge pour continuer.");
     return;
   }
-  showSection("section-step2");
+  const algTunisien = getRadio("alg_tunisien") === "oui";
+  const dejaTs = getRadio("deja_ts") === "oui";
+  if (algTunisien) {
+    showSection("section-algeriens-tunisiens");
+    return;
+  }
+  if (dejaTs) {
+    showSection("section-renouvellement");
+    return;
+  }
+  showSection("section-questions-evidentes");
+});
+
+// Stocker la liste des questionnaires à afficher (ordre 1..8)
+let questionnairesEnAttente = [];
+
+// Questions évidentes : afficher COMED si maladie, puis routage
+document.getElementById("btn-suite-evidentes").addEventListener("click", () => {
+  const blocComed = document.getElementById("bloc-comed");
+  if (getRadio("ev_maladie") === "oui") {
+    if (blocComed) blocComed.classList.remove("hidden");
+  } else {
+    if (blocComed) blocComed.classList.add("hidden");
+  }
+  const ordre = [
+    "ev_parent_fr",
+    "ev_conjoint_fr",
+    "ev_ne_france",
+    "ev_ase_16",
+    "ev_entre_13",
+    "ev_enfant_refugie",
+    "ev_famille_ue",
+    "ev_regroupement"
+  ];
+  const sections = [
+    "section-q1-parent-fr",
+    "section-q2-conjoint-fr",
+    "section-q4-ne-france",
+    "section-q5-mna-ase",
+    "section-q3-entre-13",
+    "section-q6-parent-refugie",
+    "section-q7-famille-ue",
+    "section-q8-regroupement"
+  ];
+  questionnairesEnAttente = [];
+  for (var i = 0; i < ordre.length; i++) {
+    if (getRadio(ordre[i]) === "oui") questionnairesEnAttente.push(sections[i]);
+  }
+  if (questionnairesEnAttente.length > 0) {
+    showSection(questionnairesEnAttente[0]);
+  } else {
+    showSection("section-aes");
+  }
+});
+
+// Précédent depuis questions évidentes
+document.body.addEventListener("click", function (e) {
+  if (e.target.closest("button[data-back='evidentes']")) {
+    showSection("section-step1");
+  }
+});
+
+// Toggle Q1 : si "acquis nationalité après 13 ans" = non, afficher la question contribue/JAF
+(function () {
+  var bloc = document.getElementById("bloc-q1-parent-fr-contribue");
+  if (!bloc) return;
+  document.querySelectorAll("input[name='q1_acquis_apres_13']").forEach(function (r) {
+    r.addEventListener("change", function () {
+      bloc.classList.toggle("hidden", getRadio("q1_acquis_apres_13") !== "non");
+    });
+  });
+})();
+
+// Toggle Q2 : lieu du mariage (France / étranger)
+(function () {
+  var blocFr = document.getElementById("bloc-q2-mariage-france");
+  var blocEtr = document.getElementById("bloc-q2-mariage-etranger");
+  document.querySelectorAll("input[name='q2_lieu_mariage']").forEach(function (r) {
+    r.addEventListener("change", function () {
+      var v = getRadio("q2_lieu_mariage");
+      if (blocFr) blocFr.classList.toggle("hidden", v !== "france");
+      if (blocEtr) blocEtr.classList.toggle("hidden", v !== "etranger");
+    });
+  });
+})();
+
+// Précédent depuis un questionnaire : retour liste ou page évidentes
+document.body.addEventListener("click", function (e) {
+  if (!e.target.closest(".js-back-questionnaire")) return;
+  if (questionnairesEnAttente.length > 1) {
+    var current = document.querySelector("main > section:not(.hidden)");
+    var id = current ? current.id : null;
+    var idx = id ? questionnairesEnAttente.indexOf(id) : -1;
+    if (idx > 0) showSection(questionnairesEnAttente[idx - 1]);
+    else showSection("section-questions-evidentes");
+  } else {
+    showSection("section-questions-evidentes");
+  }
+});
+
+// Suite questionnaire 1 : TS débloqué → résultat, sinon questionnaire suivant ou AES
+function goNextOrResult(tsDebloque) {
+  if (tsDebloque) {
+    showSection("section-resultat-ts");
+    return;
+  }
+  var current = document.querySelector("main > section:not(.hidden)");
+  var id = current ? current.id : null;
+  var idx = id ? questionnairesEnAttente.indexOf(id) : -1;
+  if (idx >= 0 && idx < questionnairesEnAttente.length - 1) {
+    showSection(questionnairesEnAttente[idx + 1]);
+  } else {
+    showSection("section-aes");
+  }
+}
+
+document.getElementById("btn-q1-suite").addEventListener("click", function () {
+  var reside = getRadio("q1_reside_fr") === "oui";
+  var charge = getRadio("q1_prise_charge") === "oui";
+  var apres13 = getRadio("q1_acquis_apres_13");
+  var contribueJaf = getRadio("q1_contribue_jaf") === "oui";
+  var tsOk = (reside && charge) || (apres13 === "non" && contribueJaf);
+  goNextOrResult(tsOk);
+});
+
+document.getElementById("btn-q2-suite").addEventListener("click", function () {
+  var lieu = getRadio("q2_lieu_mariage");
+  var tsOk = false;
+  if (lieu === "france") {
+    tsOk = getRadio("q2_entre_regulier_fr") === "oui" && getRadio("q2_vie_6mois") === "oui";
+  } else if (lieu === "etranger") {
+    tsOk = getRadio("q2_vlst") === "oui" && getRadio("q2_vie_depuis_mariage") === "oui" && getRadio("q2_conjoint_nat") === "oui" && getRadio("q2_transcrit") === "oui";
+  }
+  goNextOrResult(tsOk);
+});
+
+// Placeholders Q3–Q8 : bouton Continuer = même logique (next ou AES)
+document.querySelectorAll("#section-q3-entre-13 .js-back-questionnaire, #section-q4-ne-france .js-back-questionnaire, #section-q5-mna-ase .js-back-questionnaire, #section-q6-parent-refugie .js-back-questionnaire, #section-q7-famille-ue .js-back-questionnaire, #section-q8-regroupement .js-back-questionnaire").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    var current = document.querySelector("main > section:not(.hidden)");
+    var id = current ? current.id : null;
+    var idx = id ? questionnairesEnAttente.indexOf(id) : -1;
+    if (idx > 0) showSection(questionnairesEnAttente[idx - 1]);
+    else showSection("section-questions-evidentes");
+  });
 });
 
 // Affichage conditionnel des sous-blocs à l'étape 2

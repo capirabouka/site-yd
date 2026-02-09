@@ -122,48 +122,299 @@
 
         <!-- Étape 1 : Identité -->
         <section id="section-step1" class="card hidden">
-          <h2>Étape 1 / 4 – Identité</h2>
+          <h2>Identité</h2>
           <div class="grid-2">
-            <div class="field">
-              <label>Nom</label>
-              <input type="text" id="nom" autocomplete="off" />
-            </div>
             <div class="field">
               <label>Prénom</label>
               <input type="text" id="prenom" autocomplete="off" />
             </div>
-          </div>
-          <div class="grid-3">
             <div class="field">
               <label>Âge <span class="required">*</span></label>
               <input type="number" id="age" min="0" max="120" />
             </div>
-            <div class="field">
-              <span class="label">Êtes-vous ressortissant algérien&nbsp;?</span>
-              <div class="radios">
-                <label>
-                  <input type="radio" name="alg" value="oui" /> Oui
-                </label>
-                <label>
-                  <input type="radio" name="alg" value="non" /> Non
-                </label>
-              </div>
+          </div>
+          <div class="field">
+            <span class="label">Ressortissant algérien et/ou tunisien&nbsp;?</span>
+            <div class="radios">
+              <label><input type="radio" name="alg_tunisien" value="oui" /> Oui</label>
+              <label><input type="radio" name="alg_tunisien" value="non" /> Non</label>
             </div>
-            <div class="field">
-              <span class="label">Avez-vous déjà eu un titre de séjour&nbsp;?</span>
-              <div class="radios">
-                <label>
-                  <input type="radio" name="ts" value="oui" /> Oui
-                </label>
-                <label>
-                  <input type="radio" name="ts" value="non" /> Non
-                </label>
-              </div>
+          </div>
+          <div class="field">
+            <span class="label">Déjà en possession d’un titre de séjour&nbsp;?</span>
+            <div class="radios">
+              <label><input type="radio" name="deja_ts" value="oui" /> Oui</label>
+              <label><input type="radio" name="deja_ts" value="non" /> Non</label>
             </div>
           </div>
           <div class="nav">
             <span class="note">Les réponses ne sont pas enregistrées.</span>
             <button id="to-step2" class="primary">Continuer</button>
+          </div>
+        </section>
+
+        <!-- Questionnaire spécifique Algériens / Tunisiens (à venir) -->
+        <section id="section-algeriens-tunisiens" class="card hidden">
+          <h2>Questionnaire ressortissants algériens et tunisiens</h2>
+          <p>Ce questionnaire est en cours de préparation. En attendant, rapprochez-vous de l’association ou consultez les infos pratiques (préfectures, tutos, modèles).</p>
+          <button type="button" class="secondary js-nav" data-section="section-accueil">Retour à l’accueil</button>
+        </section>
+
+        <!-- Questionnaire renouvellement de TS (à venir) -->
+        <section id="section-renouvellement" class="card hidden">
+          <h2>Questionnaire renouvellement de titre de séjour</h2>
+          <p>Ce questionnaire est en cours de préparation. En attendant, consultez les infos pratiques (préfectures, modalités, tutos).</p>
+          <button type="button" class="secondary js-nav" data-section="section-accueil">Retour à l’accueil</button>
+        </section>
+
+        <!-- Page 2 : Questions évidentes TS de plein droit -->
+        <section id="section-questions-evidentes" class="card hidden">
+          <h2>Questions évidentes – Titre de séjour de plein droit</h2>
+          <p class="help">Répondez à ces questions. Selon vos réponses, nous vous orienterons vers le ou les questionnaires adaptés.</p>
+          <div id="bloc-comed" class="subcard hidden">
+            <h3>Contact COMED (maladie)</h3>
+            <p>Pour une prise en charge liée à la santé, contactez le COMED&nbsp;:</p>
+            <p><strong>Hôpital de Bicêtre</strong> – 78 rue du Général Leclerc, 94270 Le Kremlin-Bicêtre – Secteur marron (voir plan), Bâtiment «&nbsp;La Force&nbsp;», 2<sup>e</sup> étage.</p>
+            <p>Mail&nbsp;: <a href="mailto:contact@comede.org">contact@comede.org</a> – Tél. 01 45 21 39 32.</p>
+          </div>
+          <ol class="questions-evidentes">
+            <li class="field">
+              <span class="label">Êtes-vous parent d’un ou plusieurs enfants mineurs ayant la nationalité française&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="ev_parent_fr" value="oui" /> Oui</label>
+                <label><input type="radio" name="ev_parent_fr" value="non" /> Non</label>
+              </div>
+            </li>
+            <li class="field">
+              <span class="label">Êtes-vous marié.e à un.e ressortissant.e français.e&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="ev_conjoint_fr" value="oui" /> Oui</label>
+                <label><input type="radio" name="ev_conjoint_fr" value="non" /> Non</label>
+              </div>
+            </li>
+            <li class="field">
+              <span class="label">Êtes-vous né.e en France&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="ev_ne_france" value="oui" /> Oui</label>
+                <label><input type="radio" name="ev_ne_france" value="non" /> Non</label>
+              </div>
+            </li>
+            <li class="field">
+              <span class="label">Avez-vous été pris.e en charge par l’ASE avant vos 16&nbsp;ans&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="ev_ase_16" value="oui" /> Oui</label>
+                <label><input type="radio" name="ev_ase_16" value="non" /> Non</label>
+              </div>
+            </li>
+            <li class="field">
+              <span class="label">Êtes-vous entré.e en France avant vos 13&nbsp;ans&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="ev_entre_13" value="oui" /> Oui</label>
+                <label><input type="radio" name="ev_entre_13" value="non" /> Non</label>
+              </div>
+            </li>
+            <li class="field">
+              <span class="label">Avez-vous un enfant ayant le statut de réfugié ou bénéficiaire de la protection subsidiaire&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="ev_enfant_refugie" value="oui" /> Oui</label>
+                <label><input type="radio" name="ev_enfant_refugie" value="non" /> Non</label>
+              </div>
+            </li>
+            <li class="field">
+              <span class="label">Avez-vous un membre de votre famille ressortissant.e de l’Union européenne&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="ev_famille_ue" value="oui" /> Oui</label>
+                <label><input type="radio" name="ev_famille_ue" value="non" /> Non</label>
+              </div>
+            </li>
+            <li class="field">
+              <span class="label">Êtes-vous entré.e avec un titre du regroupement familial&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="ev_regroupement" value="oui" /> Oui</label>
+                <label><input type="radio" name="ev_regroupement" value="non" /> Non</label>
+              </div>
+            </li>
+            <li class="field">
+              <span class="label">Votre enfant ou vous-même souffrez d’une maladie nécessitant des soins en France&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="ev_maladie" value="oui" /> Oui</label>
+                <label><input type="radio" name="ev_maladie" value="non" /> Non</label>
+              </div>
+            </li>
+          </ol>
+          <div class="nav">
+            <button type="button" class="secondary" data-back="evidentes">Précédent</button>
+            <button id="btn-suite-evidentes" class="primary">Continuer</button>
+          </div>
+        </section>
+
+        <!-- Questionnaire AES (à venir) -->
+        <section id="section-aes" class="card hidden">
+          <h2>Questionnaire admission exceptionnelle au séjour (AES)</h2>
+          <p>Ce questionnaire est en cours de préparation. En attendant, consultez les infos pratiques et rapprochez-vous de l’association.</p>
+          <button type="button" class="secondary js-nav" data-section="section-accueil">Retour à l’accueil</button>
+        </section>
+
+        <!-- Questionnaire 1 : Parent d'enfant français mineur -->
+        <section id="section-q1-parent-fr" class="card hidden">
+          <h2>Parent d’un ou plusieurs enfants mineurs de nationalité française</h2>
+          <div class="field">
+            <span class="label">Votre enfant réside-t-il habituellement en France&nbsp;?</span>
+            <div class="radios">
+              <label><input type="radio" name="q1_reside_fr" value="oui" /> Oui</label>
+              <label><input type="radio" name="q1_reside_fr" value="non" /> Non</label>
+            </div>
+          </div>
+          <div class="field">
+            <span class="label">Assurez-vous la prise en charge de vos enfants depuis leur naissance ou depuis au moins 2&nbsp;ans&nbsp;?</span>
+            <div class="radios">
+              <label><input type="radio" name="q1_prise_charge" value="oui" /> Oui</label>
+              <label><input type="radio" name="q1_prise_charge" value="non" /> Non</label>
+            </div>
+          </div>
+          <div class="field">
+            <span class="label">Votre enfant a-t-il acquis la nationalité française après 13&nbsp;ans&nbsp;?</span>
+            <div class="radios">
+              <label><input type="radio" name="q1_acquis_apres_13" value="oui" /> Oui</label>
+              <label><input type="radio" name="q1_acquis_apres_13" value="non" /> Non</label>
+              <label><input type="radio" name="q1_acquis_apres_13" value="nc" /> Non concerné</label>
+            </div>
+          </div>
+          <div id="bloc-q1-parent-fr-contribue" class="subcard hidden">
+            <div class="field">
+              <span class="label">Le parent français contribue-t-il à l’entretien et l’éducation de votre enfant, ou avez-vous une décision du juge aux affaires familiales en votre faveur&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="q1_contribue_jaf" value="oui" /> Oui</label>
+                <label><input type="radio" name="q1_contribue_jaf" value="non" /> Non</label>
+              </div>
+            </div>
+            <p class="help">Si oui, vous remplissez les conditions d’un titre de séjour de plein droit.</p>
+          </div>
+          <div class="nav">
+            <button type="button" class="secondary js-back-questionnaire">Précédent</button>
+            <button type="button" class="primary" id="btn-q1-suite">Continuer</button>
+          </div>
+        </section>
+
+        <!-- Questionnaire 2 : Conjoint.e de ressortissant.e français.e -->
+        <section id="section-q2-conjoint-fr" class="card hidden">
+          <h2>Conjoint.e de ressortissant.e français.e</h2>
+          <div class="field">
+            <span class="label">Où avez-vous célébré votre mariage&nbsp;?</span>
+            <div class="radios">
+              <label><input type="radio" name="q2_lieu_mariage" value="france" /> En France</label>
+              <label><input type="radio" name="q2_lieu_mariage" value="etranger" /> À l’étranger</label>
+            </div>
+          </div>
+          <div id="bloc-q2-mariage-france" class="subcard hidden">
+            <div class="field">
+              <span class="label">Êtes-vous entré.e régulièrement en France (VLST ou visa court séjour)&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="q2_entre_regulier_fr" value="oui" /> Oui</label>
+                <label><input type="radio" name="q2_entre_regulier_fr" value="non" /> Non</label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Vivez-vous avec votre conjoint.e depuis plus de six mois&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="q2_vie_6mois" value="oui" /> Oui</label>
+                <label><input type="radio" name="q2_vie_6mois" value="non" /> Non</label>
+              </div>
+            </div>
+            <p class="help">Si oui aux deux : consultez les infos pratiques (préfectures, tutos, modalités). Si non : questionnaire AES.</p>
+          </div>
+          <div id="bloc-q2-mariage-etranger" class="subcard hidden">
+            <div class="field">
+              <span class="label">Êtes-vous entré.e en France avec un VLST&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="q2_vlst" value="oui" /> Oui</label>
+                <label><input type="radio" name="q2_vlst" value="non" /> Non</label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Vivez-vous avec votre conjoint depuis votre mariage&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="q2_vie_depuis_mariage" value="oui" /> Oui</label>
+                <label><input type="radio" name="q2_vie_depuis_mariage" value="non" /> Non</label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Votre conjoint a-t-il gardé la nationalité française&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="q2_conjoint_nat" value="oui" /> Oui</label>
+                <label><input type="radio" name="q2_conjoint_nat" value="non" /> Non</label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Votre mariage a-t-il été transcrit&nbsp;?</span>
+              <div class="radios">
+                <label><input type="radio" name="q2_transcrit" value="oui" /> Oui</label>
+                <label><input type="radio" name="q2_transcrit" value="non" /> Non</label>
+              </div>
+            </div>
+            <p class="help">Si oui à ces conditions : infos préfectorales, tutos. Si non : questionnaire AES.</p>
+          </div>
+          <div class="nav">
+            <button type="button" class="secondary js-back-questionnaire">Précédent</button>
+            <button type="button" class="primary" id="btn-q2-suite">Continuer</button>
+          </div>
+        </section>
+
+        <!-- Résultat : TS de plein droit débloqué → préfecture, tutos, modèles -->
+        <section id="section-resultat-ts" class="card hidden">
+          <h2>Vous semblez remplir les conditions d’un titre de séjour de plein droit</h2>
+          <p>Consultez les <strong>Infos pratiques</strong> pour : choisir votre préfecture, voir les modalités de dépôt (PAN, numérique, guichet), les tutoriels et les modèles (courriers types, bordereaux).</p>
+          <button type="button" class="primary js-nav" data-section="section-infos">Voir les infos pratiques (préfectures, tutos, modèles)</button>
+          <button type="button" class="secondary js-back-from-resultat">Retour</button>
+        </section>
+
+        <!-- Placeholders questionnaires 3 à 8 (à venir) -->
+        <section id="section-q3-entre-13" class="card hidden">
+          <h2>Entré.e en France avant 13 ans</h2>
+          <p>Questionnaire en cours de préparation.</p>
+          <div class="nav">
+            <button type="button" class="secondary js-back-questionnaire">Précédent</button>
+            <button type="button" class="primary js-next-questionnaire">Continuer</button>
+          </div>
+        </section>
+        <section id="section-q4-ne-france" class="card hidden">
+          <h2>Enfant né.e en France</h2>
+          <p>Questionnaire en cours de préparation.</p>
+          <div class="nav">
+            <button type="button" class="secondary js-back-questionnaire">Précédent</button>
+            <button type="button" class="primary js-next-questionnaire">Continuer</button>
+          </div>
+        </section>
+        <section id="section-q5-mna-ase" class="card hidden">
+          <h2>MNA pris.e en charge par l’ASE avant 16 ans</h2>
+          <p>Questionnaire en cours de préparation.</p>
+          <div class="nav">
+            <button type="button" class="secondary js-back-questionnaire">Précédent</button>
+            <button type="button" class="primary js-next-questionnaire">Continuer</button>
+          </div>
+        </section>
+        <section id="section-q6-parent-refugie" class="card hidden">
+          <h2>Parent d’enfant réfugié</h2>
+          <p>Questionnaire en cours de préparation.</p>
+          <div class="nav">
+            <button type="button" class="secondary js-back-questionnaire">Précédent</button>
+            <button type="button" class="primary js-next-questionnaire">Continuer</button>
+          </div>
+        </section>
+        <section id="section-q7-famille-ue" class="card hidden">
+          <h2>Membre de famille ressortissant de l’UE</h2>
+          <p>Questionnaire en cours de préparation.</p>
+          <div class="nav">
+            <button type="button" class="secondary js-back-questionnaire">Précédent</button>
+            <button type="button" class="primary js-next-questionnaire">Continuer</button>
+          </div>
+        </section>
+        <section id="section-q8-regroupement" class="card hidden">
+          <h2>Regroupement familial</h2>
+          <p>Questionnaire en cours de préparation.</p>
+          <div class="nav">
+            <button type="button" class="secondary js-back-questionnaire">Précédent</button>
+            <button type="button" class="primary js-next-questionnaire">Continuer</button>
           </div>
         </section>
 
